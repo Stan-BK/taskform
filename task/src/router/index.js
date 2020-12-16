@@ -69,7 +69,8 @@ router.beforeEach((to,from,next) => {
       cancelButtonText: '取消',
       type: 'warning'
     }).then(() => {
-      store.state.editStatus = false
+      store.commit('changeEditStatus')
+      store.commit('changeRoute',to.path)
       next()
     }).catch(() => {
     });
@@ -82,6 +83,7 @@ router.beforeEach((to,from,next) => {
       store.commit('changeTitle',to.meta.title)
       store.commit('changeLoginState')
     }
+    store.commit('changeRoute',to.path)
     next()
   } else if (to.path !== '/admin' && to.path !== '/') {
     vm.$alert('请先登录', 'Tips', {
@@ -89,6 +91,7 @@ router.beforeEach((to,from,next) => {
     })
     next('/admin')
   } else {
+    store.commit('changeRoute',to.path)
     next()
   }
 })

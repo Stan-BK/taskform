@@ -9,37 +9,27 @@
           <el-row class="tac" style="height: calc(90vh);">
             <el-col :span="24" style="height: 100%;overflow:auto;">
               <el-menu
-                default-active="4"
+                :default-active="this.$store.state.route"
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
                 background-color="#545c64"
                 text-color="#fff"
-                active-text-color="#66b1ff" style="height: 100%;">
-                <router-link to="/edit">
-                <el-menu-item index="1">
+                active-text-color="#66b1ff" 
+                :router="true"
+                style="height: 100%;">
+                <el-menu-item index="/edit">
                   <i class="el-icon-edit"></i>
                   <span slot="title">Edit</span>
                 </el-menu-item>
-                </router-link>
-                <router-link to="/artical">
-                <el-menu-item index="2">
+                <el-menu-item index="/artical">
                   <i class="el-icon-document"></i>
                   <span slot="title">Artical</span>
                 </el-menu-item>
-                </router-link>
-                <router-link to="/">
-                <el-menu-item index="3">
-                  <i class="el-icon-menu"></i>
-                  <span slot="title">Home</span>
-                </el-menu-item>
-                </router-link>
-                <router-link to="/admin">
-                <el-menu-item index="4">
+                <el-menu-item index="/admin">
                   <i class="el-icon-menu"></i>
                   <span slot="title">login</span>
                 </el-menu-item>
-                </router-link>
               </el-menu>
             </el-col>
           </el-row>

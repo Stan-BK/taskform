@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import router from '../router/index'
-import axios from 'axios'
-
+//import router from '../router/index'
+//import axios from 'axios'
+import axios from '../axios/index'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -16,7 +16,9 @@ export default new Vuex.Store({
     password: '',
     articalId: 0,
     artical: [],
-    editStatus: false
+    editStatus: false,
+    token: '',
+    route: '/admin'
   },
   mutations: {
     init (state) {
@@ -41,6 +43,12 @@ export default new Vuex.Store({
     },
     isEdit (state) {
       state.editStatus = true
+    },
+    changeEditStatus (state) {
+      state.editStatus = false
+    },
+    changeRoute (state, path) {
+      state.route = path
     },
     notEdit (state) {
       state.editStatus = false
