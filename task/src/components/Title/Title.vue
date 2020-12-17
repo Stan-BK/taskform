@@ -22,8 +22,6 @@
             <el-submenu index="4">
               <template slot="title">{{this.$store.state.name}}</template>
               <router-link to='/admin'><el-menu-item index="4-1">登出</el-menu-item></router-link>
-              <el-menu-item index="4-2">选项2</el-menu-item>
-              <el-menu-item index="4-3">选项3</el-menu-item>
             </el-submenu>
           </el-menu>
         </div>

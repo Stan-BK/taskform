@@ -138,7 +138,32 @@ export default {
     },
     input () {
       let text = document.getElementsByTagName('textarea')[0].value;
-      document.getElementById('iframe').contentDocument.body.innerHTML=text;
+      const iframe = document.getElementById('iframe')
+      const regex = new RegExp(/<script>(\s*.*?)*?<\/script>/gi) //正则匹配script标签内容
+      const str = text.match(regex)
+      if (!str) {
+        iframe.contentDocument.body.innerHTML=text;
+      } else if (str.length == 1) {
+        let iscript = iframe.contentDocument.createElement('script')
+        let script = String(text.match(regex))
+        script = script.slice(8)                  //去掉script双标签
+        script = script.slice(0,script.length-9)
+        iscript.innerHTML = script
+        text = text.replace(regex,"")
+        iframe.contentDocument.body.innerHTML=text;
+        iframe.contentDocument.body.appendChild(iscript)
+      } else {
+        text = text.replace(regex,"")
+        iframe.contentDocument.body.innerHTML=text;
+        for (let i of str) {
+          let iscript = iframe.contentDocument.createElement('script')
+          let script = i
+          script = script.slice(8)                  //去掉script双标签
+          script = script.slice(0,script.length-9)
+          iscript.innerHTML = script
+          iframe.contentDocument.body.appendChild(iscript)
+        }
+      }
     },
     clearall () {
       document.getElementsByTagName('textarea')[0].value = '';

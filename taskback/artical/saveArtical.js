@@ -4,6 +4,8 @@ const connection = require('../sql')
 const saveArtical = (artical) => {
   return new Promise((resolve,reject) => {
 
+    artical.content = artical.content.replace(/\'/g,"''")
+
     const updataArtical = `UPDATE articals SET filename='${artical.filename}',description='${artical.description}',content='${artical.content}' WHERE id=${artical.id}`
 
     connection.query(updataArtical, function (err, result) {

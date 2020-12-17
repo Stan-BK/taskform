@@ -100,7 +100,7 @@ export default {
             } else {
               this.$store.commit('deleteForm')
             }
-            this.$router.push('/edit')
+            this.$router.push('/artical')
           },err => {
             if (err.response.status === 500) { 
               this.$alert('服务器无响应','error' , {

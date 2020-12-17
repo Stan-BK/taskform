@@ -5,6 +5,8 @@ const connection = require('../sql')
 const createArtical = (artical) => {
   return new Promise((resolve,reject) => {
 
+    artical.content = artical.content.replace(/\'/g,"''")
+    
     const addArtical = `INSERT INTO articals(userid,filename,description,content) VALUES(${artical.userid},'${artical.filename}','${artical.description}','${artical.content}')`
     const findArtical = `SELECT id FROM articals WHERE filename='${artical.filename}'`
 
